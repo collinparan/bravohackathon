@@ -25,22 +25,7 @@ services:
         container_name: python_app
         user: root
         volumes:
-            - ./app:/app
+            - ./:/app
         entrypoint: watchmedo auto-restart --recursive --pattern="*.py,*.txt,*.csv,*.xlsx,*.css,*.png,*.jpg,*.js" --directory="." python ./app.py
         ports:
             - "80:80"
-    codeserver_app:
-        build:
-            context: .
-            dockerfile: codeserver.Dockerfile
-        container_name: codeserver_app
-        user: root
-        environment:
-            - ROOT=TRUE
-            - SUDO_PASSWORD=123
-        volumes:
-            - ./:/
-        entrypoint: watchmedo auto-restart --recursive --pattern="*.py,*.txt,*.csv,*.xlsx,*.css,*.png,*.jpg,*.js" --directory="." python ./app.py
-        ports:
-            - "8443:8443"
-
