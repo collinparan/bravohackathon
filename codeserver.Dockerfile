@@ -17,6 +17,9 @@ RUN sudo apt-get update && \
     sudo ln -s /usr/bin/pip3 /usr/bin/pip && \
     sudo apt-mark hold python python-pip
 
-COPY / ./root
+COPY ./ ./root
+
+RUN pip install -r requirements.txt
+RUN chmod u+x app.py 
 
 EXPOSE 8443 

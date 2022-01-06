@@ -1,3 +1,3 @@
-#!/usr/bin/bash
+#!/bin/bash
 
-docker load < services.img
+docker load -i allinone.tar

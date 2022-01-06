@@ -1,7 +1,3 @@
-#!/usr/bin/bash
+#!/bin/bash
 
-for img in $(docker-compose config | awk '{if ($1 == "image:") print $2;}'); do
-  images="$images $img"
-done
-
-docker save -o services.img $images
+docker save $(docker images | grep -v \<none\> | sed '1d' | awk '{print $1 ":" $2 }') -o allinone.tar
